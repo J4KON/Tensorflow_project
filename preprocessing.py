@@ -2,7 +2,7 @@ import pandas as pd
 import glob
 import os
 
-station_folder = './21609641' #'./20380357'  # './21609641'
+station_folder = '.././21609641' #'./20380357'  # './21609641'
 
 # USGS data
 usgs_file = os.path.join(station_folder, '11266500_Strt_2021-04-20_EndAt_2023-04-21.csv')
@@ -11,8 +11,8 @@ usgs = pd.read_csv(usgs_file, parse_dates=['DateTime'])
 usgs = usgs[usgs['DateTime'].dt.minute == 0]
 # Remove timezone if present
 usgs['DateTime'] = usgs['DateTime'].dt.tz_localize(None)
-# Unit Conversion
-usgs['USGSFlowValue'] = usgs['USGSFlowValue'] * 35.3147
+# Unit Conversion (only for 57)
+#usgs['USGSFlowValue'] = usgs['USGSFlowValue'] * 35.3147
 
 # NWM Data
 nwm_files = glob.glob(os.path.join(station_folder, 'streamflow_*.csv'))
